@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz 21 de Septiembre 🌻</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #F0E68C 100%);
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Formulario inicial */
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .welcome-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .welcome-title {
+            color: #FF6B35;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .welcome-subtitle {
+            color: #2C5F2D;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .name-input {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1.1em;
+            border: 3px solid #FFD700;
+            border-radius: 25px;
+            outline: none;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(45deg, #FFA500, #FF8C00);
+        }
+
+        /* Contenedor de animación */
+        .animation-container {
+            display: none;
+            min-height: 100vh;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #F0E68C 100%);
+            padding: 20px;
+        }
+
+        /* Mensaje */
+        .message {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        .main-message {
+            font-size: 3em;
+            color: #FF6B35;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .sub-message {
+            font-size: 1.8em;
+            color: #2C5F2D;
+            font-weight: bold;
+        }
+
+        /* Contenedor de flores */
+        .flowers-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 100px;
+            margin-top: 50px;
+        }
+
+        /* Flor individual */
+        .flower {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: flowerSway 4s ease-in-out infinite;
+        }
+
+        .flower:first-child {
+            animation-delay: 0s;
+        }
+
+        .flower:last-child {
+            animation-delay: 2s;
+        }
+
+        @keyframes flowerSway {
+            0%, 100% {
+                transform: rotate(-2deg);
+            }
+            50% {
+                transform: rotate(2deg);
+            }
+        }
+
+        /* Cabeza de la flor */
+        .flower-head {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            margin-bottom: 10px;
+            animation: flowerBob 3s ease-in-out infinite;
+        }
+
+        @keyframes flowerBob {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Pétalos */
+        .petal {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 36px;
+            height: 60px;
+            background: linear-gradient(145deg, #FFD700 60%, #FFB300 100%, #FFF8DC 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18);
+            transform-origin: 50% 80%;
+        }
+
+        /* Centro de la flor */
+        .flower-center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 64px;
+            height: 64px;
+            background: radial-gradient(circle, #5A3A1B 60%, #8B4513 100%, #A0522D 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px #a0522d55, inset 0 4px 12px rgba(0,0,0,0.35);
+            z-index: 10;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Tallo */
+        .stem {
+            width: 15px;
+            height: 200px;
+            background: linear-gradient(to right, #228B22, #32CD32, #90EE90);
+            border-radius: 8px;
+            box-shadow: inset -3px 0 6px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        /* Hojas */
+        .leaf {
+            position: absolute;
+            width: 30px;
+            height: 40px;
+            background: linear-gradient(45deg, #228B22, #32CD32);
+            border-radius: 0 100% 0 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .leaf:first-child {
+            top: 60px;
+            left: -20px;
+            transform: rotate(-30deg);
+        }
+
+        .leaf:last-child {
+            top: 100px;
+            right: -20px;
+            transform: rotate(30deg) scaleX(-1);
+        }
+
+        /* Pétalos cayendo */
+        .falling-petal {
+            position: absolute;
+            width: 12px;
+            height: 18px;
+            background: linear-gradient(45deg, #FFD700, #FFFF00);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: fall linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-message {
+                font-size: 2.2em;
+            }
+            
+            .sub-message {
+                font-size: 1.4em;
+            }
+            
+            .flowers-container {
+                gap: 50px;
+            }
+            
+            .flower-head {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .petal {
+                width: 35px;
+                height: 50px;
+            }
+            
+            .flower-center {
+                top: 30px;
+                left: 30px;
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        /* Tulipanes */
+        .tulip {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            transform: scale(0.7) translateY(40px);
+            animation: tulipAppear 0.8s cubic-bezier(.5,1.7,.5,1) forwards, tulipSway 4s ease-in-out infinite;
+        }
+        .tulip-head {
+            width: 80px;
+            height: 90px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+        .tulip-petal {
+            position: absolute;
+            bottom: 0;
+            width: 50px;
+            height: 80px;
+            background: linear-gradient(145deg, #FFD700 60%, #FFB300 100%, #FFF8DC 100%);
+            border-radius: 50% 50% 60% 60% / 80% 80% 100% 100%;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+            opacity: 0.98;
+        }
+        .petal-left {
+            left: 0;
+            z-index: 2;
+            transform: rotate(-18deg) scaleX(0.9);
+        }
+        .petal-center {
+            left: 15px;
+            z-index: 3;
+            transform: scaleX(1.1);
+        }
+        .petal-right {
+            right: 0;
+            z-index: 2;
+            transform: rotate(18deg) scaleX(0.9);
+        }
+        .tulip-stem {
+            width: 10px;
+            height: 120px;
+            background: linear-gradient(to right, #228B22, #32CD32, #90EE90);
+            border-radius: 8px;
+            box-shadow: inset -2px 0 4px rgba(0,0,0,0.18);
+            position: relative;
+        }
+        .tulip-leaf {
+            position: absolute;
+            width: 32px;
+            height: 40px;
+            background: linear-gradient(45deg, #228B22, #32CD32);
+            border-radius: 0 100% 0 100%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.18);
+        }
+        .tulip-leaf.left {
+            top: 40px;
+            left: -22px;
+            transform: rotate(-30deg);
+        }
+        .tulip-leaf.right {
+            top: 70px;
+            right: -22px;
+            transform: rotate(30deg) scaleX(-1);
+        }
+        @keyframes tulipSway {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+        @keyframes tulipAppear {
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Responsive solo para tulipanes y layout principal */
+        @media (max-width: 768px) {
+            .main-message {
+                font-size: 2.2em;
+            }
+            .sub-message {
+                font-size: 1.4em;
+            }
+            .flowers-container {
+                gap: 40px;
+            }
+            .tulip-head {
+                width: 60px;
+                height: 70px;
+            }
+            .tulip-petal {
+                width: 32px;
+                height: 55px;
+            }
+            .tulip-stem {
+                height: 90px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Formulario inicial -->
+    <div class="form-container" id="formContainer">
+        <div class="welcome-card">
+            <h1 class="welcome-title">🌻 Holii! 🌻</h1>
+            <p class="welcome-subtitle">En este día especial 21 de septiembre<br>quiero regalarte flores amarillas uwu</p>
+            <input type="text" class="name-input" id="nameInput" placeholder="Escribe tu nombre aquí..." maxlength="20">
+            <button class="submit-btn" onclick="showFlowers()">Mis Flores! 🌼</button>
+        </div>
+    </div>
+
+    <!-- Contenedor de animación -->
+    <div class="animation-container" id="animationContainer">
+        <!-- Mensaje personalizado -->
+        <div class="message">
+            <h1 class="main-message">¡Feliz 21 de Septiembre vv!</h1>
+            <p class="sub-message" id="personalMessage">Por si tu chango no te dio ni el saludo xd</p>
+        </div>
+
+        <!-- Contenedor de flores -->
+        <div class="flowers-container">
+            <!-- Tulipán 1 -->
+            <div class="tulip" style="animation-delay: 0s;">
+                <div class="tulip-head">
+                    <div class="tulip-petal petal-left"></div>
+                    <div class="tulip-petal petal-center"></div>
+                    <div class="tulip-petal petal-right"></div>
+                </div>
+                <div class="tulip-stem">
+                    <div class="tulip-leaf left"></div>
+                    <div class="tulip-leaf right"></div>
+                </div>
+            </div>
+            <!-- Tulipán 2 -->
+            <div class="tulip" style="animation-delay: 0.5s;">
+                <div class="tulip-head">
+                    <div class="tulip-petal petal-left"></div>
+                    <div class="tulip-petal petal-center"></div>
+                    <div class="tulip-petal petal-right"></div>
+                </div>
+                <div class="tulip-stem">
+                    <div class="tulip-leaf left"></div>
+                    <div class="tulip-leaf right"></div>
+                </div>
+            </div>
+            <!-- Tulipán 3 -->
+            <div class="tulip" style="animation-delay: 1s;">
+                <div class="tulip-head">
+                    <div class="tulip-petal petal-left"></div>
+                    <div class="tulip-petal petal-center"></div>
+                    <div class="tulip-petal petal-right"></div>
+                </div>
+                <div class="tulip-stem">
+                    <div class="tulip-leaf left"></div>
+                    <div class="tulip-leaf right"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showFlowers() {
+            const nameInput = document.getElementById('nameInput');
+            const name = nameInput.value.trim();
+            
+            if (!name) {
+                alert('¡Por favor escribe tu nombre para continuar! 🌻');
+                nameInput.focus();
+                return;
+            }
+
+            // Ocultar formulario y mostrar animación
+            document.getElementById('formContainer').style.display = 'none';
+            document.getElementById('animationContainer').style.display = 'block';
+            
+            // Personalizar mensaje
+            document.getElementById('personalMessage').textContent = `${name}, por si tu chango no te dio ni el saludo xd 🌻`;
+
+            // Empezar pétalos cayendo después de 2 segundos
+            setTimeout(startFallingPetals, 2000);
+        }
+
+        function startFallingPetals() {
+            setInterval(createFallingPetal, 1000);
+        }
+
+        function createFallingPetal() {
+            const petal = document.createElement('div');
+            petal.className = 'falling-petal';
+            petal.style.left = Math.random() * 100 + '%';
+            petal.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            
+            document.getElementById('animationContainer').appendChild(petal);
+            
+            // Remover pétalo después de la animación
+            setTimeout(() => {
+                if (petal.parentNode) {
+                    petal.parentNode.removeChild(petal);
+                }
+            }, 6000);
+        }
+
+        // Permitir envío con Enter
+        document.getElementById('nameInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                showFlowers();
+            }
+        });
+    </script>
+</body>
+</html>
